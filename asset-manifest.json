@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.2a783d50.css",
-    "main.js": "/static/js/main.1c0c2615.js",
-    "index.html": "/index.html"
+    "main.css": "/contracts-generator/static/css/main.2a783d50.css",
+    "main.js": "/contracts-generator/static/js/main.1c0c2615.js",
+    "index.html": "/contracts-generator/index.html"
   },
   "entrypoints": [
     "static/css/main.2a783d50.css",
