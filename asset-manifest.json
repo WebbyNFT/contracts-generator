@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/contracts-generator/static/css/main.1d81a788.css",
-    "main.js": "/contracts-generator/static/js/main.28a92320.js",
+    "main.js": "/contracts-generator/static/js/main.f99eaf63.js",
     "index.html": "/contracts-generator/index.html"
   },
   "entrypoints": [
     "static/css/main.1d81a788.css",
-    "static/js/main.28a92320.js"
+    "static/js/main.f99eaf63.js"
   ]
 }
