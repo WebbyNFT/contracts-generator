@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.31d6cfe0.css",
-    "main.js": "/static/js/main.fa09742a.js",
-    "index.html": "/index.html",
-    "main.fa09742a.js.map": "/static/js/main.fa09742a.js.map"
+    "main.css": "/contracts-generator/static/css/main.31d6cfe0.css",
+    "main.js": "/contracts-generator/static/js/main.fa09742a.js",
+    "index.html": "/contracts-generator/index.html",
+    "main.fa09742a.js.map": "/contracts-generator/static/js/main.fa09742a.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
