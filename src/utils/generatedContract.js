@@ -1,48 +1,70 @@
 const contract = (data) => {
-  return `// SPDX-License-Identifier: UNLICENSED
+  return `// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.10;
+pragma solidity ^0.8.0;
 
-import "./ERC721A.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "erc721a/contracts/ERC721A.sol";
 
-contract TestContract is ERC721A, Ownable {
-    string public metadataBaseURL;
+contract ${data?.contractName} is ERC721A, Ownable {
+    string public metadataBaseURL = "${data?.metadataUrl}";
 
-    uint256 public nftPerAddressLimit = 3;
+    uint256 public nftPerAddressLimit = ${data?.nftPerAddress};
 
-    uint256 public constant price = 0.120 ether; 
+    uint256 public price = ${data?.price} ether; 
 
-    uint256 public constant maxSupply = 3500; 
+    uint256 public maxSupply = ${data?.maxSupply}; 
+    
+    bool public paused = false;
 
-    constructor() ERC721A("Merk", "mrk") {}
+    mapping(address => uint256) public mintedBalance;
 
-    function getTotalSupply() public view returns (uint256) {
-        return totalSupply();
+    constructor() ERC721A("${data?.collectionName}", "${data?.collectionSymbol}") {}
+
+    function setPrice(uint256 _price) external onlyOwner {
+        price = _price;
     }
 
-    function setBaseURI(string memory baseURL) external onlyOwner {
-        metadataBaseURL = baseURL;
+    function setBaseURI(string memory _baseURL) external onlyOwner {
+        metadataBaseURL = _baseURL;
     }
 
-    function _baseURI() internal view virtual override returns (string memory) {
-        return metadataBaseURL;
+    function setmaxSupply(uint256 _amount) external onlyOwner {
+        maxSupply = _amount;
+    }
+
+    function setMaxPerWallet(uint256 _amount) external onlyOwner {
+        nftPerAddressLimit = _amount;
+    }
+
+    function pause(bool _state) public onlyOwner {
+        paused = _state;
+    }
+
+    function getMaxPerWallet() internal view returns (uint256) {
+        return nftPerAddressLimit;
     }
 
     function mint(uint256 numOfTokens) external payable {
-        require(
-            totalSupply() + numOfTokens > maxSupply,
-            "Max supply reached"
-        );
+        require(!paused, "Minting is paused");
+        require(totalSupply() + numOfTokens < maxSupply, "Max supply reached");
         require(numOfTokens > 0, "You must mint at least one token");
+        require(price * numOfTokens <= msg.value, "Not enough funds");
+        require(
+            mintedBalance[msg.sender] + numOfTokens <= nftPerAddressLimit,
+            "Nft per adress limit exceeded"
+        );
+
+        for (uint256 i = 0; i < numOfTokens; i++) {
+            mintedBalance[msg.sender]++;
+        }
 
         _safeMint(msg.sender, numOfTokens);
     }
 
     function withdraw() external onlyOwner {
-        uint256 _balance = address(this).balance;
-        address payable _sender = payable(_msgSender());
-        _sender.transfer(_balance);
+        (bool os, ) = payable(owner()).call{value: address(this).balance}("");
+        require(os, "Error when trying to withdraw");
     }
 }`;
 };
