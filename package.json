@@ -1,6 +1,6 @@
 {
   "name": "contracts-generator",
-  "homepage": "https://webbynft.github.io/contracts-generator/",
+  "homepage": "https://webbynft.github.io/solidity-contracts-generator/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
