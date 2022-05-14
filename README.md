@@ -4,7 +4,7 @@ Simple generate contracts by just filling some inputs.
 ![image](https://i.imgur.com/3KEYbbK.png)
 
 ### Demo
-Demo is available [here](https://webbynft.github.io/contracts-generator/)
+Demo is available [here](https://webbynft.github.io/solidity-contracts-generator/)
 
 ### 1. Installing dependencies
 To install all dependencies run:
