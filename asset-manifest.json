@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/contracts-generator/static/js/main.174eb5a2.js",
-    "index.html": "/contracts-generator/index.html",
-    "main.174eb5a2.js.map": "/contracts-generator/static/js/main.174eb5a2.js.map"
+    "main.js": "/solidity-contracts-generator/static/js/main.174eb5a2.js",
+    "index.html": "/solidity-contracts-generator/index.html",
+    "main.174eb5a2.js.map": "/solidity-contracts-generator/static/js/main.174eb5a2.js.map"
   },
   "entrypoints": [
     "static/js/main.174eb5a2.js"
